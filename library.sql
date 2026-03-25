@@ -1,0 +1,360 @@
+ SELECT user FROM dual;
+
+USER
+------------------------------
+SYSTEM
+
+SQL> CREATE TABLE BOOKS (
+  2      Book_ID NUMBER PRIMARY KEY,
+  3      Title VARCHAR2(100),
+  4      Author VARCHAR2(100),
+  5      Publisher VARCHAR2(100),
+  6      Year NUMBER,
+  7      Copies NUMBER
+  8  );
+
+Table created.
+
+SQL>
+SQL> CREATE TABLE MEMBERS (
+  2      Member_ID NUMBER PRIMARY KEY,
+  3      Name VARCHAR2(100),
+  4      Email VARCHAR2(100),
+  5      Phone VARCHAR2(15),
+  6      Membership_Date DATE
+  7  );
+
+Table created.
+
+SQL>
+SQL> CREATE TABLE LIBRARIANS (
+  2      Librarian_ID NUMBER PRIMARY KEY,
+  3      Name VARCHAR2(100),
+  4      Contact VARCHAR2(15)
+  5  );
+
+Table created.
+
+SQL>
+SQL> CREATE TABLE ISSUE (
+  2      Issue_ID NUMBER PRIMARY KEY,
+  3      Book_ID NUMBER,
+  4      Member_ID NUMBER,
+  5      Librarian_ID NUMBER,
+  6      Issue_Date DATE,
+  7      Due_Date DATE,
+  8      Return_Date DATE,
+  9      FOREIGN KEY (Book_ID) REFERENCES BOOKS(Book_ID),
+ 10      FOREIGN KEY (Member_ID) REFERENCES MEMBERS(Member_ID),
+ 11      FOREIGN KEY (Librarian_ID) REFERENCES LIBRARIANS(Librarian_ID)
+ 12  );
+
+Table created.
+
+SQL>
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO BOOKS VALUES (1,'DBMS','Korth','McGraw',2020,5);
+
+1 row created.
+
+SQL> INSERT INTO BOOKS VALUES (2,'OS','Galvin','Wiley',2019,3);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO MEMBERS VALUES (101,'Rahul','rahul@gmail.com','9999999999',DATE '2024-01-01');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO LIBRARIANS VALUES (1,'Admin','8888888888');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ISSUE VALUES (
+  2      1,
+  3      1,
+  4      101,
+  5      1,
+  6      SYSDATE,
+  7      SYSDATE + 7,
+  8      NULL
+  9  );
+
+1 row created.
+
+SQL>
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM BOOKS;
+
+   BOOK_ID
+----------
+TITLE
+--------------------------------------------------------------------------------
+AUTHOR
+--------------------------------------------------------------------------------
+PUBLISHER
+--------------------------------------------------------------------------------
+      YEAR     COPIES
+---------- ----------
+         1
+DBMS
+Korth
+
+   BOOK_ID
+----------
+TITLE
+--------------------------------------------------------------------------------
+AUTHOR
+--------------------------------------------------------------------------------
+PUBLISHER
+--------------------------------------------------------------------------------
+      YEAR     COPIES
+---------- ----------
+McGraw
+      2020          5
+
+
+   BOOK_ID
+----------
+TITLE
+--------------------------------------------------------------------------------
+AUTHOR
+--------------------------------------------------------------------------------
+PUBLISHER
+--------------------------------------------------------------------------------
+      YEAR     COPIES
+---------- ----------
+         2
+OS
+Galvin
+
+   BOOK_ID
+----------
+TITLE
+--------------------------------------------------------------------------------
+AUTHOR
+--------------------------------------------------------------------------------
+PUBLISHER
+--------------------------------------------------------------------------------
+      YEAR     COPIES
+---------- ----------
+Wiley
+      2019          3
+
+
+SQL> SELECT table_name FROM user_tables;
+
+TABLE_NAME
+------------------------------
+LOGMNR_PARAMETER$
+LOGMNR_SESSION$
+MVIEW$_ADV_WORKLOAD
+MVIEW$_ADV_BASETABLE
+MVIEW$_ADV_SQLDEPEND
+MVIEW$_ADV_PRETTY
+MVIEW$_ADV_TEMP
+MVIEW$_ADV_FILTER
+MVIEW$_ADV_LOG
+MVIEW$_ADV_FILTERINSTANCE
+MVIEW$_ADV_LEVEL
+
+TABLE_NAME
+------------------------------
+MVIEW$_ADV_ROLLUP
+MVIEW$_ADV_AJG
+MVIEW$_ADV_FJG
+MVIEW$_ADV_GC
+MVIEW$_ADV_CLIQUE
+MVIEW$_ADV_ELIGIBLE
+MVIEW$_ADV_OUTPUT
+MVIEW$_ADV_EXCEPTIONS
+MVIEW$_ADV_PARAMETERS
+MVIEW$_ADV_INFO
+MVIEW$_ADV_JOURNAL
+
+TABLE_NAME
+------------------------------
+MVIEW$_ADV_PLAN
+AQ$_QUEUE_TABLES
+AQ$_QUEUES
+AQ$_SCHEDULES
+AQ$_INTERNET_AGENTS
+AQ$_INTERNET_AGENT_PRIVS
+DEF$_ERROR
+DEF$_DESTINATION
+DEF$_CALLDEST
+DEF$_DEFAULTDEST
+DEF$_LOB
+
+TABLE_NAME
+------------------------------
+DEF$_PROPAGATOR
+DEF$_ORIGIN
+DEF$_PUSHED_TRANSACTIONS
+REPCAT$_REPCAT
+REPCAT$_FLAVORS
+REPCAT$_REPSCHEMA
+REPCAT$_SNAPGROUP
+REPCAT$_REPOBJECT
+REPCAT$_REPCOLUMN
+REPCAT$_KEY_COLUMNS
+REPCAT$_GENERATED
+
+TABLE_NAME
+------------------------------
+REPCAT$_REPPROP
+REPCAT$_REPCATLOG
+REPCAT$_DDL
+REPCAT$_REPGROUP_PRIVS
+REPCAT$_PRIORITY_GROUP
+REPCAT$_PRIORITY
+REPCAT$_COLUMN_GROUP
+REPCAT$_GROUPED_COLUMN
+REPCAT$_CONFLICT
+REPCAT$_RESOLUTION_METHOD
+REPCAT$_RESOLUTION
+
+TABLE_NAME
+------------------------------
+REPCAT$_RESOLUTION_STATISTICS
+REPCAT$_RESOL_STATS_CONTROL
+REPCAT$_PARAMETER_COLUMN
+REPCAT$_AUDIT_ATTRIBUTE
+REPCAT$_AUDIT_COLUMN
+REPCAT$_FLAVOR_OBJECTS
+REPCAT$_TEMPLATE_STATUS
+REPCAT$_TEMPLATE_TYPES
+REPCAT$_REFRESH_TEMPLATES
+REPCAT$_USER_AUTHORIZATIONS
+REPCAT$_OBJECT_TYPES
+
+TABLE_NAME
+------------------------------
+REPCAT$_TEMPLATE_REFGROUPS
+REPCAT$_TEMPLATE_OBJECTS
+REPCAT$_TEMPLATE_PARMS
+REPCAT$_OBJECT_PARMS
+REPCAT$_USER_PARM_VALUES
+REPCAT$_TEMPLATE_SITES
+REPCAT$_SITE_OBJECTS
+REPCAT$_RUNTIME_PARMS
+REPCAT$_TEMPLATE_TARGETS
+REPCAT$_EXCEPTIONS
+REPCAT$_INSTANTIATION_DDL
+
+TABLE_NAME
+------------------------------
+REPCAT$_EXTENSION
+REPCAT$_SITES_NEW
+LOGSTDBY$PARAMETERS
+LOGSTDBY$EVENTS
+LOGSTDBY$APPLY_MILESTONE
+LOGSTDBY$SCN
+LOGSTDBY$FLASHBACK_SCN
+LOGSTDBY$PLSQL
+LOGSTDBY$SKIP_TRANSACTION
+LOGSTDBY$SKIP
+LOGSTDBY$SKIP_SUPPORT
+
+TABLE_NAME
+------------------------------
+LOGSTDBY$HISTORY
+LOGSTDBY$EDS_TABLES
+DEF$_AQCALL
+DEF$_AQERROR
+SQLPLUS_PRODUCT_PROFILE
+HELP
+BOOKS
+MEMBERS
+LIBRARIANS
+ISSUE
+LOGMNR_GT_TAB_INCLUDE$
+
+TABLE_NAME
+------------------------------
+LOGMNR_GT_USER_INCLUDE$
+LOGMNR_GT_XID_INCLUDE$
+LOGMNRT_MDDL$
+OL$
+OL$HINTS
+OL$NODES
+LOGMNR_DICTSTATE$
+LOGMNRC_GTLO
+LOGMNRC_GTCS
+LOGMNRC_GSII
+LOGMNRC_GSBA
+
+TABLE_NAME
+------------------------------
+LOGMNR_SEED$
+LOGMNR_DICTIONARY$
+LOGMNR_OBJ$
+LOGMNR_TAB$
+LOGMNR_COL$
+LOGMNR_ATTRCOL$
+LOGMNR_TS$
+LOGMNR_IND$
+LOGMNR_USER$
+LOGMNR_TABPART$
+LOGMNR_TABSUBPART$
+
+TABLE_NAME
+------------------------------
+LOGMNR_TABCOMPART$
+LOGMNR_TYPE$
+LOGMNR_COLTYPE$
+LOGMNR_ATTRIBUTE$
+LOGMNR_LOB$
+LOGMNR_CDEF$
+LOGMNR_CCOL$
+LOGMNR_ICOL$
+LOGMNR_LOBFRAG$
+LOGMNR_INDPART$
+LOGMNR_INDSUBPART$
+
+TABLE_NAME
+------------------------------
+LOGMNR_INDCOMPART$
+LOGMNR_LOGMNR_BUILDLOG
+LOGMNR_NTAB$
+LOGMNR_OPQTYPE$
+LOGMNR_SUBCOLTYPE$
+LOGMNR_KOPM$
+LOGMNR_PROPS$
+LOGMNR_ENC$
+LOGMNR_REFCON$
+LOGMNR_PARTOBJ$
+LOGMNRP_CTAS_PART_MAP
+
+TABLE_NAME
+------------------------------
+LOGSTDBY$APPLY_PROGRESS
+LOGMNR_INTEGRATED_SPILL$
+LOGMNR_PROCESSED_LOG$
+LOGMNR_UID$
+LOGMNRC_DBNAME_UID_MAP
+LOGMNR_LOG$
+LOGMNR_ERROR$
+LOGMNR_RESTART_CKPT$
+LOGMNR_GLOBAL$
+LOGMNR_SESSION_EVOLVE$
+LOGMNR_FILTER$
+
+TABLE_NAME
+------------------------------
+LOGMNR_AGE_SPILL$
+LOGMNR_SPILL$
+LOGMNR_RESTART_CKPT_TXINFO$
+LOGMNR_SESSION_ACTIONS$
+
+158 rows selected.
+
+SQL>
